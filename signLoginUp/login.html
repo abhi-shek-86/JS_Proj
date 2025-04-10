@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <style>
+        #container{
+            width: 350px;
+            height: 350px;
+            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 10px;
+            box-shadow: 3px 3px 5px 6px #ccc;
+            justify-self: center;
+        }
+
+        h1{
+            text-align: center;
+            color: orangered;
+        }
+
+        button{
+            color: orangered;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+    </style>
+
+
+    <div id="container">
+        <h1>Login Page</h1>
+
+        <input type="text" id="email" placeholder="Enter email">
+
+        <input type="password" id="password" placeholder="Enter password">
+
+        <button onclick="login()">Login</button>
+
+        <p>You Don't Have an Account Please <a href="./signup.html">Signup</a> Here</p>
+
+    </div>
+
+    <script>
+
+        function login() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+
+            let allUsers = JSON.parse(localStorage.getItem("login"))
+
+            let exist = allUsers.find((x)=>x.user_email === email && x.user_password === password)
+
+            if (exist){
+                alert("Login Successfull");
+
+                localStorage.setItem("currentUser", JSON.stringify(exist));
+                window.location.href = "./dashboard.html";
+            }
+            else{
+                alert("Invalid Email or Password");
+            }
+        }
+
+
+
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>

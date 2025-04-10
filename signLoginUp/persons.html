@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <style>
+        h2 {
+            text-align: center;
+            color: orangered;
+        }
+
+        button{
+            color: orangered;
+        }
+
+        #container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            border-radius: 10px;
+            box-shadow: 3px 3px 5px 6px #ccc;
+            justify-self: center;
+            
+            
+        }
+
+        .liTag{
+            margin-top: 30px;
+            list-style: none;
+            text-align: center;
+            color: rgb(9, 7, 9);
+            font-size: 13px;
+            font-weight: bold;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+    </style>
+
+
+
+    
+
+    <div id="container">
+        <h2>Persons List</h2>
+        <input type="text" id="name" placeholder="Enter name">
+        
+        <button onclick="addPerson()"> Add Person</button><br><br><br>
+    </div>
+
+
+
+    <script>
+        function addPerson() {
+            let name = document.getElementById("name").value;
+            let person = { name: name };
+
+            
+            let personsData = JSON.parse(localStorage.getItem("persons ")) || [];
+            personsData.push(person);
+
+            let personDetails = localStorage.setItem("persons ", JSON.stringify(personsData));
+
+
+            let liTag = document.createElement("li")
+            liTag.className = "liTag"
+
+            liTag.innerText = name;
+
+            document.body.appendChild(liTag);
+
+        }
+    </script>
+
+</body>
+
+</html>

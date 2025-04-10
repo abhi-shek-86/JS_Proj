@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <style>
+        #container{
+            width: 300px;
+            height: 300px;
+            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 10px;
+            box-shadow: 3px 3px 5px 6px #ccc;
+            justify-self: center;
+        }
+
+        h1{
+            text-align: center;
+            color: orangered;
+        }
+
+        button{
+            color: orangered;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+    </style>
+
+
+    <div id="container">
+        <h1>Dashboard</h1>
+
+        <h3 id="current"></h3>
+
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+
+        const user = JSON.parse(localStorage.getItem("currentUser"))
+
+        document.getElementById("current").innerHTML = "Welcome " + user.user_name + " to your dashboard"
+        console.log(user)
+
+
+        function logout() {
+            let confirmation = confirm("Are you sure you want to logout?")
+            localStorage.removeItem("currentUser")
+            window.location.href = "login.html"
+        }
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

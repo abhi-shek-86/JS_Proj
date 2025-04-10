@@ -1,0 +1,51 @@
+<!-- let localData = JSON.parse(localStorage.getItem("logindata")) || [];
+
+            
+            const existed = localData.find((x)=> x.user_email === email);
+            
+
+            if(existed){
+                alert("User already exists")
+            } 
+            
+
+          
+
+            localData.push(data); 
+            
+
+            let localData1 = localStorage.setItem("logindata", JSON.stringify(localData));
+
+            
+            let liTag = document.getElementById("liTag")
+        
+                let li = document.createElement("li")
+                li.innerHTML = `
+        
+                Name : ${data.user_name} <br>
+                Email : ${data.user_email} <br>
+                Password : ${data.user_password} <br>
+                `
+                liTag.appendChild(li)
+
+
+                window.location.href = "login.html" -->
+
+
+                let allUsers = JSON.parse(localStorage.getItem("logindata"))
+
+            let userFound = allUsers.find((x) => x.user_email === email && x.user_password === password)
+
+            if (userFound) {
+                alert("Login Successful")
+
+                localStorage.setItem("currentUser", JSON.stringify(userFound))
+                
+                window.location.href = "dashboard.html"
+            }
+
+            else{
+                alert("Invalid Email or Password")
+            }
+
+            console.log(userFound)

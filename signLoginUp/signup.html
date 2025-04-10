@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <style>
+        #container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width:350px;
+            height: 360px;
+            border: 1px solid black;
+            border-radius: 10px;
+            box-shadow: 3px 3px 5px 6px #ccc;
+            justify-self: center;
+        }
+
+        
+        h2{
+            text-align: center;
+            color: orangered;
+            
+        }
+        label{
+            color: orangered;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        button{
+            
+            color: orangered;
+            font-size: 16px;
+            
+            
+        }
+
+        p{
+            color: rgb(1, 1, 1);
+            font-size: 13px;
+            font-weight: bold;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+    </style>
+
+    <div id="container">
+        <h2>Signup Page </h2>
+        <form onsubmit="sendData(event)" >
+    
+            <label for="name">Enter Your Name :</label>
+            <input type="text" id="name" name="name" required><br><br>
+            
+        
+            <label for="email">Enter Your Email :</label>
+            <input type="email" id="email" name="email" required><br><br>
+        
+            <label for="password">Enter Your Password :</label>
+            <input type="password" id="password" name="password" required><br><br>
+        
+            <button id="submit1">Submit</button>
+    
+            <!-- <p>If You Have already an Account  <a href="./login.html">Login</a>  Here</p><br>
+            <br>
+
+            <p>Check This Once ⚠️</p>
+            <p>If You Want Add Persons  <a href="./persons.html">Click Here</a></p> -->
+        </form>
+        
+        <div id="liTag"></div>
+    </div>
+    
+
+    <script>
+        function sendData(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+            
+            let name = document.getElementById("name").value
+            let email = document.getElementById("email").value
+            let password = document.getElementById("password").value
+
+            let data = {
+                user_name: name,
+                user_email: email,
+                user_password: password
+            }
+
+
+            let localData = JSON.parse(localStorage.getItem("login")) || [];
+
+            localData.push(data)
+            
+
+            localStorage.setItem("login" , JSON.stringify(localData))
+            window.location.href = "login.html"
+                
+        }
+
+        
+    </script>
+</body>
+</html>
