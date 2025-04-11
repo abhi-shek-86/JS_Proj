@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Generator</title>
+</head>
+
+<body>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #FF8C00;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 325px;
+            padding: 20px;
+            border: 1px solid black;
+            box-shadow: 3px 3px 5px 9px grey;
+            background-color: white;
+            border-radius: 15px;
+        }
+
+        form {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 8px 12px;
+            background-color: #FF8C00;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e67e00;
+        }
+
+        #store {
+            font-weight: bold;
+            color: #FF8C00;
+        }
+    </style>
+
+    <div id="container">
+        <h1>OTP Generator</h1>
+        <form onsubmit="enterNumber(event)">
+            <label for="mobile">Enter Your Mobile Number:</label><br><br>
+            <input type="text" id="mobile" placeholder="Enter Your Number" required pattern="[0-9]+" title="Enter Numbers Only 😙">
+            <button>Gen OTP</button>
+        </form>
+
+        <p id="store"></p>
+
+        <form onsubmit="submitOtp(event)">
+            <label for="otp">Enter Above Generated OTP:</label><br><br>
+            <input type="text" id="otp" placeholder="Enter OTP" required pattern="[0-9]+"title="Enter Numbers Only 😙">
+            <button id="btn">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        let mobile = document.getElementById("mobile").value;
+
+        let genotp = "";
+        function enterNumber(event) {
+            event.preventDefault();
+            let number = document.getElementById("store");
+            let alphanum = "0123456789";
+            genotp = "";
+            for (let i = 0; i < 4; i++) {
+                let RandomNum = Math.floor(Math.random() * alphanum.length);
+                genotp += alphanum[RandomNum];
+            }
+            number.innerHTML = "Generated OTP is: " + genotp;
+        }
+
+        function submitOtp(e) {
+            e.preventDefault();
+            let enteredOtp = document.getElementById("otp").value;
+
+            if (enteredOtp == genotp) {
+                alert("OTP is Correct");
+            }
+            else {
+                alert("OTP is Incorrect");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
